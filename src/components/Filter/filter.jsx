@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
 export default class Filter extends Component {
-    render() {
-        const { filter } = this.props;
+  render() {
+    const { filter, handleFilterChange } = this.props;
     return (
-      <input
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={this.handleInputChange}
-        placeholder="Search contacts..."
-      />
+      <label>
+        Find contacts by name
+        <input
+          type="text"
+          name="filter"
+          value={filter}
+          onChange={handleFilterChange}
+          placeholder="Search contacts..."
+        />
+      </label>
     );
   }
 }
