@@ -8,14 +8,9 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
+  
 
   handleAddContact = (name, number) => {
     const { contacts } = this.state;
@@ -39,8 +34,6 @@ export class App extends Component {
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
     }));
   };
 
@@ -55,7 +48,7 @@ export class App extends Component {
   };
 
   render() {
-    const { name, number, filter, contacts } = this.state;
+    const { filter, contacts, handleInputChange } = this.state;
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -63,11 +56,9 @@ export class App extends Component {
       <div className="container">
         <h1 className="phonebook">Phonebook</h1>
         <ContactForm
-          name={name}
-          number={number}
-          handleInputChange={this.handleInputChange}
+          handleInputChange={handleInputChange}
           handleAddContact={this.handleAddContact}
-          contacts={filteredContacts}
+          
         />
         <h2 className="contacts">Contacts</h2>
         <Filter filter={filter} handleFilterChange={this.handleFilterChange} />
